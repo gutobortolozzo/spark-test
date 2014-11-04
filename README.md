@@ -1,4 +1,4 @@
-Tiny Java layer to request spark services only using Java 8 SE.
+Tiny Java layer to request spark services.
 
 This layer is intended to support integration tests of spark (https://github.com/perwendel/spark).
 
