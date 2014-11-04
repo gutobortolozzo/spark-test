@@ -2,7 +2,7 @@ package com.spark;
 
 public class SparkRequest {
 	
-	private String url = "http://localhost:";
+	private String url = "http://localhost";
 	private int port = 4567;
 	private HttpMethod method = HttpMethod.GET;
 	private String path = "";
@@ -30,13 +30,17 @@ public class SparkRequest {
 	}
 	
 	public <Type> Type submit(Transformer<Type> transformer){
-		String destinyUrl = url+port+path;
+		String destinyUrl = getHostUrl();
 		UrlResponse response = TestUtils.doMethod(method.toString(), destinyUrl, null);
 		return transformer.from(response.body());
 	}
 	
 	public UrlResponse submit(){
-		String destinyUrl = url+port+path;
+		String destinyUrl = getHostUrl();
 		return TestUtils.doMethod(method.toString(), destinyUrl, null);
+	}
+	
+	private String getHostUrl() {
+		return url+":"+port+path;
 	}
 }

@@ -1,4 +1,4 @@
-package com.rules;
+package com.spark.rules;
 
 public class Person {
 	

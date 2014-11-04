@@ -1,19 +1,19 @@
 package com.spark.services;
 
-import spark.Spark;
+import static spark.Spark.get;
 
-import com.rules.Person;
+import com.spark.rules.Person;
 
 public class SparkSample {
 
 	public static void start() {
 
-		Spark.before((request, response) -> {
-			System.out.println(request.pathInfo());
+		get("/ping", (request, response) -> {
+			return "pong";
 		});
-
-		Spark.get("/ping/:name", (request, response) -> {
-			return new Person(request.params(":name"), "Bull");
+		
+		get("/create/:name/:lastname", (request, response) -> {
+			return new Person(request.params(":name"), request.params(":lastname"));
 		}, new JsonTransformer());
 	}
 
