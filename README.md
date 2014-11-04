@@ -1,4 +1,4 @@
-Tiny Java layer to request spark services.
+Tiny Java layer self contained to request spark services .
 
 This layer is intended to support integration tests of spark (https://github.com/perwendel/spark).
 
