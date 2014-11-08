@@ -31,13 +31,24 @@ public class Request {
 	
 	public <Type> Type submit(Transformer<Type> transformer){
 		String destinyUrl = getHostUrl();
-		Response response = TestUtils.doMethod(method.toString(), destinyUrl, null);
+		Response response = TestUtils.doMethod(method.name(), destinyUrl, "");
+		return transformer.from(response.body());
+	}
+	
+	public Response submit(String body){
+		String destinyUrl = getHostUrl();
+		return TestUtils.doMethod(method.toString(), destinyUrl, body);
+	}
+	
+	public <Type> Type submit(String body, Transformer<Type> transformer){
+		String destinyUrl = getHostUrl();
+		Response response = TestUtils.doMethod(method.name(), destinyUrl, body);
 		return transformer.from(response.body());
 	}
 	
 	public Response submit(){
 		String destinyUrl = getHostUrl();
-		return TestUtils.doMethod(method.toString(), destinyUrl, null);
+		return TestUtils.doMethod(method.name(), destinyUrl, "");
 	}
 	
 	private String getHostUrl() {

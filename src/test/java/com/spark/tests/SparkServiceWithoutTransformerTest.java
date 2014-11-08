@@ -23,7 +23,7 @@ public class SparkServiceWithoutTransformerTest extends BaseTest {
 	}
 	
 	@Test public void body() {
-		assertEquals("{\"name\":\"john\",\"cpf\":\"doe\"}", subject.body());
+		assertEquals("{\"name\":\"john\",\"lastname\":\"doe\"}", subject.body());
 	}
 	
 	@Before public void before(){
