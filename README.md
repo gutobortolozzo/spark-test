@@ -24,6 +24,6 @@ Person person = prepare().toPath("/create/john/doe").usingMethod(HttpMethod.GET)
 });
 
 person.toString();
-> Person [name=john, cpf=doe]
+> Person [name=john, lastname=doe]
 
 ```
