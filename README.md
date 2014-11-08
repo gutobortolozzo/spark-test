@@ -12,7 +12,7 @@ response.status();
 response.headers();
 > {null=[HTTP/1.1 200 OK], Server=[Jetty(9.0.2.v20130417)], Content-Length=[27], Content-Type=[text/html; charset=UTF-8]}
 response.body();
-> {"name":"john","cpf":"doe"}
+> {"name":"john","lastname":"doe"}
 ```
 
 Example using gson to transform json response into java objects
