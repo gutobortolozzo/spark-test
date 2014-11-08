@@ -1,5 +1,7 @@
 package com.spark;
 
+import static java.nio.charset.Charset.defaultCharset;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -8,7 +10,7 @@ import java.net.URL;
 
 class TestUtils {
 	
-	static UrlResponse doMethod(String requestMethod, String path, String body){
+	static Response doMethod(String requestMethod, String path, String body){
 		try {
 			return getResponse(requestMethod, path);
 		} catch (Exception e) {
@@ -17,7 +19,7 @@ class TestUtils {
 		}
 	}
 	
-	private static UrlResponse getResponse(String requestMethod, String path) throws Exception {
+	private static Response getResponse(String requestMethod, String path) throws Exception {
 		URL url = new URL(path);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod(requestMethod);
@@ -29,14 +31,16 @@ class TestUtils {
 		
 		String response = readStream(stream);
 		
-		return new UrlResponse(connection.getHeaderFields(), response, connection.getResponseCode());
+		return new Response(connection.getHeaderFields(), response, connection.getResponseCode());
 	}
 	
 	private static String readStream(InputStream stream) throws Exception {
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br = new BufferedReader(new InputStreamReader(stream));
-		while(br.ready()) sb.append(br.readLine());
+		StringBuilder builder = new StringBuilder();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(stream, defaultCharset()));
 		
-		return sb.toString();
+		String line = "";
+		while((line = reader.readLine()) != null) builder.append(line);
+		
+		return builder.toString();
 	}
 }

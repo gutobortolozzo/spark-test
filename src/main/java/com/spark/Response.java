@@ -3,13 +3,13 @@ package com.spark;
 import java.util.List;
 import java.util.Map;
 
-public class UrlResponse {
+public class Response {
 	
 	private Map<String, List<String>> headers;
 	private String body;
 	private int status;
 	
-	UrlResponse(Map<String, List<String>> headers, String body, int status) {
+	Response(Map<String, List<String>> headers, String body, int status) {
 		this.headers = headers;
 		this.body = body;
 		this.status = status;

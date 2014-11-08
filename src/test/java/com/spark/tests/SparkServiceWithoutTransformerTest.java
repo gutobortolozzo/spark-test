@@ -7,12 +7,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.spark.HttpMethod;
-import com.spark.SparkRequest;
-import com.spark.UrlResponse;
+import com.spark.Request;
+import com.spark.Response;
 
 public class SparkServiceWithoutTransformerTest extends BaseTest {
 
-	private UrlResponse subject;	
+	private Response subject;	
 	
 	@Test public void status() {
 		assertEquals(200, subject.status());
@@ -27,6 +27,6 @@ public class SparkServiceWithoutTransformerTest extends BaseTest {
 	}
 	
 	@Before public void before(){
-		subject = SparkRequest.prepare().toPath("/create/john/doe").usingMethod(HttpMethod.GET).submit();
+		subject = Request.prepare().toPath("/create/john/doe").usingMethod(HttpMethod.GET).submit();
 	}
 }

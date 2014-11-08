@@ -1,6 +1,6 @@
 package com.spark.tests;
 
-import static com.spark.SparkRequest.prepare;
+import static com.spark.Request.prepare;
 import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.Type;

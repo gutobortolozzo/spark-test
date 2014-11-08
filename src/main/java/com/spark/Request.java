@@ -1,41 +1,41 @@
 package com.spark;
 
-public class SparkRequest {
+public class Request {
 	
 	private String url = "http://localhost";
 	private int port = 4567;
 	private HttpMethod method = HttpMethod.GET;
 	private String path = "";
 	
-	public static SparkRequest prepare(){
-		SparkRequest request = new SparkRequest();
+	public static Request prepare(){
+		Request request = new Request();
 		return request;
 	}
 	
-	public static SparkRequest build(String url, int port){
-		SparkRequest request = new SparkRequest();
+	public static Request build(String url, int port){
+		Request request = new Request();
 		request.url = url;
 		request.port = port;
 		return request;
 	}
 	
-	public SparkRequest toPath(String path){
+	public Request toPath(String path){
 		this.path = path;
 		return this;
 	}
 	
-	public SparkRequest usingMethod(HttpMethod method){
+	public Request usingMethod(HttpMethod method){
 		this.method = method;
 		return this;
 	}
 	
 	public <Type> Type submit(Transformer<Type> transformer){
 		String destinyUrl = getHostUrl();
-		UrlResponse response = TestUtils.doMethod(method.toString(), destinyUrl, null);
+		Response response = TestUtils.doMethod(method.toString(), destinyUrl, null);
 		return transformer.from(response.body());
 	}
 	
-	public UrlResponse submit(){
+	public Response submit(){
 		String destinyUrl = getHostUrl();
 		return TestUtils.doMethod(method.toString(), destinyUrl, null);
 	}
