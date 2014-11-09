@@ -5,7 +5,7 @@ This layer is intended to support integration tests of spark (https://github.com
 
 ```java
 
-UrlResponse response = SparkRequest.prepare().toPath("/create/john/doe").usingMethod(HttpMethod.GET).submit();
+UrlResponse response = Request.prepare().toPath("/create/john/doe").usingMethod(HttpMethod.GET).submit();
 
 response.status();
 > 200
@@ -18,7 +18,7 @@ response.body();
 Example using gson to transform json response into java objects
 
 ```java
-Person person = prepare().toPath("/create/john/doe").usingMethod(HttpMethod.GET).submit((response) -> {
+Person person = Request.prepare().toPath("/create/john/doe").usingMethod(HttpMethod.GET).submit((response) -> {
 	Type type = new TypeToken<Person>(){}.getType();
 	return new Gson().fromJson(response, type);
 });
