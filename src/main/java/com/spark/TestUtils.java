@@ -27,7 +27,7 @@ class TestUtils {
 		URL url = new URL(path);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod(requestMethod);
-		doOutputIfPresent(body, connection);
+		writeBodyIfPresent(body, connection);
 		connection.connect();
 		
 		InputStream stream = connection.getResponseCode() == 200 ? 
@@ -39,7 +39,7 @@ class TestUtils {
 		return new Response(connection.getHeaderFields(), response, connection.getResponseCode());
 	}
 
-	private static void doOutputIfPresent(String body, HttpURLConnection connection) throws IOException {
+	private static void writeBodyIfPresent(String body, HttpURLConnection connection) throws IOException {
 		if(body.isEmpty()) return;
 		connection.setDoOutput(true);
 		OutputStream outputStream = connection.getOutputStream();

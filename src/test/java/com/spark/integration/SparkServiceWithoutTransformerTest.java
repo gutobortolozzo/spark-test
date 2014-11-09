@@ -1,4 +1,4 @@
-package com.spark.tests;
+package com.spark.integration;
 
 
 import static org.junit.Assert.assertEquals;
@@ -23,10 +23,10 @@ public class SparkServiceWithoutTransformerTest extends BaseTest {
 	}
 	
 	@Test public void body() {
-		assertEquals("{\"name\":\"john\",\"lastname\":\"doe\"}", subject.body());
+		assertEquals("{\"name\":\"john\"}", subject.body());
 	}
 	
 	@Before public void before(){
-		subject = Request.prepare().toPath("/create/john/doe").usingMethod(HttpMethod.GET).submit();
+		subject = Request.prepare().toPath("/create/john").usingMethod(HttpMethod.GET).submit();
 	}
 }

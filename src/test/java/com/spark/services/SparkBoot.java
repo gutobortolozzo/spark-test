@@ -5,7 +5,7 @@ import static spark.Spark.post;
 
 import com.spark.rules.Person;
 
-public class SparkSample {
+public class SparkBoot {
 
 	public static void start() {
 
@@ -18,13 +18,11 @@ public class SparkSample {
 		});
 		
 		post("/name", (request, response) -> {
-			String name = request.body().split("&")[0].split("=")[1];
-			String lastname = request.body().split("&")[1].split("=")[1];
-			return new Person(name, lastname);
+			return new Person(request.body());
 		}, new JsonTransformer());
 		
-		get("/create/:name/:lastname", (request, response) -> {
-			return new Person(request.params(":name"), request.params(":lastname"));
+		get("/create/:name", (request, response) -> {
+			return new Person(request.params(":name"));
 		}, new JsonTransformer());
 	}
 

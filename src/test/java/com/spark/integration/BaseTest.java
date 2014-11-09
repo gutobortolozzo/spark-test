@@ -1,4 +1,4 @@
-package com.spark.tests;
+package com.spark.integration;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,7 +11,7 @@ import spark.Spark;
 import com.spark.HttpMethod;
 import com.spark.Request;
 import com.spark.Response;
-import com.spark.services.SparkSample;
+import com.spark.services.SparkBoot;
 
 public abstract class BaseTest {
 	
@@ -23,7 +23,7 @@ public abstract class BaseTest {
 	}
 	
 	@BeforeClass public static void start() throws Exception{
-		SparkSample.start();
+		SparkBoot.start();
 		Thread.sleep(200);
 	}
 	

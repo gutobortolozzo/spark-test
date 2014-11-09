@@ -1,4 +1,4 @@
-package com.spark.tests;
+package com.spark.integration;
 
 import static com.spark.Request.prepare;
 import static org.junit.Assert.assertEquals;
@@ -18,11 +18,11 @@ public class SparkServiceWithBodyRequestTransformedTest extends BaseTest{
 	private Person subject;
 
 	@Test public void requestWithPerson() {
-		assertEquals("Person [name=John, lastname=Bull]", subject.toString());
+		assertEquals("Person [name=John]", subject.toString());
 	}
 	
 	@Before public void before(){
-		subject = prepare().toPath("/name").usingMethod(HttpMethod.POST).submit("name=John&lastname=Bull", (response) -> {
+		subject = prepare().toPath("/name").usingMethod(HttpMethod.POST).submit("John", (response) -> {
 			Type type = new TypeToken<Person>(){}.getType();
 			return new Gson().fromJson(response, type);
 		 });

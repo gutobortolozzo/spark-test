@@ -1,4 +1,4 @@
-package com.spark.tests;
+package com.spark.integration;
 
 import static com.spark.Request.prepare;
 import static org.junit.Assert.assertEquals;
